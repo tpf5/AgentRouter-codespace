@@ -23,17 +23,22 @@ fi
 # 用国内 npm 镜像，装包更快（失败也不影响）
 npm config set registry https://registry.npmmirror.com 2>/dev/null || true
 
-# 1) 装 Node.js（已存在则跳过）
+# 1) 装 Node.js（已存在则跳过）；优先用阿里云 npmmirror 预编译包，国内最稳
 if ! command -v node >/dev/null 2>&1; then
   echo "未检测到 Node.js，开始安装…"
-  if command -v conda >/dev/null 2>&1; then
+  NODE_VER="v20.18.0"
+  if curl -fsSL "https://registry.npmmirror.com/-/binary/node/${NODE_VER}/node-${NODE_VER}-linux-x64.tar.gz" -o /tmp/node.tar.gz; then
+    mkdir -p "$HOME/.local/node"
+    tar -xzf /tmp/node.tar.gz -C "$HOME/.local/node" --strip-components=1
+    export PATH="$HOME/.local/node/bin:$PATH"
+  elif command -v conda >/dev/null 2>&1; then
     conda install -y nodejs
   elif command -v apt-get >/dev/null 2>&1; then
     SUDO=""; command -v sudo >/dev/null 2>&1 && SUDO=sudo
     curl -fsSL https://deb.nodesource.com/setup_20.x | $SUDO -E bash -
     $SUDO apt-get install -y nodejs
   else
-    echo "❌ 既没有 conda 也没有 apt，请手动安装 Node 18+ 后重试"; exit 1
+    echo "❌ 无法自动安装 Node，请手动装 18+ 后重试"; exit 1
   fi
 fi
 echo "Node 版本：$(node -v)"
@@ -56,7 +61,8 @@ JSON
 if ! grep -q "ANTHROPIC_BASE_URL" ~/.bashrc 2>/dev/null; then
   cat >> ~/.bashrc <<EOF
 
-# ===== Claude Code 第三方 API =====
+# ===== Node + Claude Code 第三方 API =====
+export PATH="\$HOME/.local/node/bin:\$PATH"
 export ANTHROPIC_BASE_URL="$BASE_URL"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="$OPUS_MODEL"
 export ANTHROPIC_AUTH_TOKEN="$ANTHROPIC_AUTH_TOKEN"

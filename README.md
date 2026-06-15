@@ -70,23 +70,14 @@ claude
 
 脚本会自动装 Node + Claude Code、写好默认设置、把第三方 API 变量持久化到 `~/.bashrc`。
 
-### Gitpod（CPU 云 IDE，类似 Codespaces）
-
-1. 先在 👉 https://gitpod.io/variables 设 3 个变量（scope 填 `tpf308/ai-codespace` 或 `*/*`）：
-   - `ANTHROPIC_BASE_URL` = `https://cc.freemodel.dev`
-   - `ANTHROPIC_DEFAULT_OPUS_MODEL` = `claude-opus-4-8`
-   - `ANTHROPIC_AUTH_TOKEN` = 你的令牌
-2. 打开 👉 `https://gitpod.io/#https://github.com/tpf308/ai-codespace`
-3. 等 `.gitpod.yml` 的任务跑完，终端里运行 `claude`
-
-> 若你用的是新版 Gitpod（基于 devcontainer），它会直接复用本仓库已有的 `.devcontainer/`。
+> 注：Gitpod 已改版为付费的 **Ona** 平台（主推自带的 Codex/GPT agent），不再适合免费跑 Claude Code。
+> CPU 云 IDE 的需求用 **GitHub Codespaces** 即可，不需要 Gitpod。
 
 ## 目录结构
 
 ```
 .devcontainer/devcontainer.json    # Codespaces 容器配置（地址、模型、自动加载 .env、写默认设置）
 .devcontainer/claude-settings.json # Claude Code 默认设置（权限/主题/强度）
-.gitpod.yml                        # Gitpod 配置
 setup-claude.sh                    # 通用安装脚本（PAI-DSW / ModelScope 等）
 .env.example                       # 第三方令牌模板（复制为 .env 使用）
 requirements.txt                   # Python 依赖（按需）
