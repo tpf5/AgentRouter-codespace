@@ -1,11 +1,21 @@
-# AI 云端开发环境（GitHub Codespaces + Claude Code）
+# 多平台云端 Claude Code 环境（第三方中转 API）
 
-在 **GitHub Codespaces（免费 CPU）** 里使用 **Claude Code**，并通过**第三方中转 API** 调用模型。
+在各种**免费云环境**里跑 **Claude Code**，统一通过**第三方中转 API**（`https://cc.freemodel.dev`）调用模型，不用本地装环境。
 
-打开 Codespace 时会自动：
-- 创建 Python 3.11 + Node.js 20 容器
-- 全局安装 Claude Code（`@anthropic-ai/claude-code`）
+支持的平台（详见 [第五节](#五在其他平台用)）：
+
+| 平台 | 算力 | 适合 |
+|------|------|------|
+| **GitHub Codespaces** | CPU 免费 | 最省事，开箱即用（本仓库主用） |
+| **魔搭 ModelScope** | 免费 GPU | 顺带跑 / 微调模型 |
+| **腾讯 Cloud Studio** | CPU 免费 | 备用 CPU 环境 |
+
+主力是 **GitHub Codespaces**：从本仓库创建 Codespace，会自动
+- 建好 Python 3.11 + Node.js 20 容器
+- 全局装好 Claude Code（`@anthropic-ai/claude-code`）
 - 让每个新终端自动加载 `.env`（把第三方令牌注入环境变量）
+
+> 只想用 Claude Code 就选 CPU 免费的（Codespaces / Cloud Studio）；它本身不吃 GPU。下面一~四节讲 Codespaces，第五节讲其他平台。
 
 ## 一、创建 Codespace
 
