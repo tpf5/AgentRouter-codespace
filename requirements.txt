@@ -1,0 +1,6 @@
+# 调用云端大模型 API 所需的库
+openai>=1.0.0          # OpenAI SDK，兼容 DeepSeek / 通义 / Moonshot 等
+anthropic>=0.40.0      # Anthropic Claude SDK
+python-dotenv>=1.0.0   # 从 .env 文件加载 API Key
+requests>=2.31.0       # 通用 HTTP 请求
+httpx>=0.27.0          # 异步 HTTP 请求

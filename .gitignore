@@ -1,0 +1,14 @@
+# 绝不提交真实密钥
+.env
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 虚拟环境
+.venv/
+venv/
+
+# 编辑器
+.idea/

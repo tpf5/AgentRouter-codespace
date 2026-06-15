@@ -1,0 +1,22 @@
+{
+  // Codespace 开发容器配置：CPU 环境，专用于调用云端大模型 API
+  "name": "AI API 开发环境",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+
+  // 容器创建后自动安装依赖
+  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt",
+
+  "customizations": {
+    "vscode": {
+      // 进入 Codespace 自动安装这些扩展
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
+    }
+  }
+}
