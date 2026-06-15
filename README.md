@@ -73,7 +73,7 @@ claude
 > 若想在**已存在**的 Codespace 里临时用（不重建），在终端手动配置：
 > ```bash
 > npm install -g @anthropic-ai/claude-code
-> export ANTHROPIC_BASE_URL="https://api-cc.freemodel.dev"
+> export ANTHROPIC_BASE_URL="https://cc.freemodel.dev"
 > export ANTHROPIC_AUTH_TOKEN="你的令牌"
 > claude
 > ```
