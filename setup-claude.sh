@@ -66,6 +66,8 @@ export PATH="\$HOME/.local/node/bin:\$PATH"
 export ANTHROPIC_BASE_URL="$BASE_URL"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="$OPUS_MODEL"
 export ANTHROPIC_AUTH_TOKEN="$ANTHROPIC_AUTH_TOKEN"
+# root 容器（如 DSW/ModelScope）下允许 bypass 权限模式
+export IS_SANDBOX=1
 EOF
 fi
 
