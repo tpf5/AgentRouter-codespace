@@ -1,5 +1,5 @@
 {
-  // Codespace 开发容器配置：CPU 环境，用于调用云端大模型 API + 运行 Claude Code
+  // Codespace 开发容器配置：CPU 环境，用于运行 Claude Code（第三方 API）
   "name": "AI API 开发环境",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
 
@@ -10,10 +10,10 @@
     }
   },
 
-  // 容器创建后：装 Python 依赖 + 全局安装 Claude Code
-  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt && npm install -g @anthropic-ai/claude-code",
+  // 容器创建后：装 Python 依赖 + 全局安装 Claude Code + 让新终端自动加载 .env（注入第三方令牌）
+  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt && npm install -g @anthropic-ai/claude-code && echo 'set -a; [ -f /workspaces/ai-codespace/.env ] && . /workspaces/ai-codespace/.env; set +a' >> ~/.bashrc",
 
-  // 第三方 API 的非敏感配置（地址和模型名可入库；令牌走 Codespaces Secret，不在这里）
+  // 第三方 API 的非敏感配置（地址和模型名可入库；令牌放本地 .env，不在这里）
   "containerEnv": {
     "ANTHROPIC_BASE_URL": "https://cc.freemodel.dev",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8"
