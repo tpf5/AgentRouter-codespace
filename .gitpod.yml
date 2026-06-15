@@ -1,0 +1,16 @@
+# Gitpod（经典版）配置：CPU 云端开发环境，预装 Claude Code（第三方 API）。
+# 注意：令牌请在 https://gitpod.io/variables 里设为环境变量，不要写进本文件。
+image: gitpod/workspace-full          # 自带 Python + Node.js
+
+tasks:
+  - name: 安装 Claude Code
+    init: npm install -g @anthropic-ai/claude-code
+    command: |
+      mkdir -p ~/.claude
+      cp .devcontainer/claude-settings.json ~/.claude/settings.json
+      echo "若已在 Gitpod 变量里设好 ANTHROPIC_* 三个变量，直接运行：claude"
+
+vscode:
+  extensions:
+    - ms-python.python
+    - ms-toolsai.jupyter
