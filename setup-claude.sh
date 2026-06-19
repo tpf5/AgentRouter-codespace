@@ -14,11 +14,11 @@
 #   # 以后每次重开：  source /mnt/workspace/start-claude.sh && claude
 #
 # 可选（不设则用默认值）：
-#   export ANTHROPIC_BASE_URL="https://cc.freemodel.dev"
+#   export ANTHROPIC_BASE_URL="https://agentrouter.org/"
 #   export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-8"
 set -e
 
-BASE_URL="${ANTHROPIC_BASE_URL:-https://cc.freemodel.dev}"
+BASE_URL="${ANTHROPIC_BASE_URL:-https://agentrouter.org/}"
 OPUS_MODEL="${ANTHROPIC_DEFAULT_OPUS_MODEL:-claude-opus-4-8}"
 
 if [ -z "${ANTHROPIC_AUTH_TOKEN:-}" ]; then
